@@ -19,6 +19,5 @@
             git config --global user.name "RayyanAlkasaji"
         - name: Commit and push
           run: |
-            git add .
             git diff --staged --quiet || (git commit -m "Automate changes" && git push)
             echo "This is CICD"
