@@ -3,7 +3,7 @@ run-name: cicd-pipeline
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-  runs-on: windows-latest
+  runs-on: ubuntu-latest
   steps:
     - run: git add .
     - run: echo "This is adding"
