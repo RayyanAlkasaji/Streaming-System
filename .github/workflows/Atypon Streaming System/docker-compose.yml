@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: video-system-mysql
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=root
+    ports:
+      - 8085:3306
+    expose:
+      - 8085
+  authentication-service:
+    container_name: authentication-service
+    build: ./authentication-service
+    ports :
+      - 8083:8083
+    restart: always
+    depends_on:
+      mysql:
+        condition: service_started
+  file-system-service:
+    container_name: file-system-service
+    build: ./file-system-service
+    ports :
+      - 8084:8084
+  streaming-service:
+    container_name: streaming-service
+    build: ./streaming-service
+    ports:
+      - 12345:80
+  upload-frontend:
+    container_name: upload-frontend
+    build: ./upload-frontend
+    ports:
+      - 12346:80
+  upload-service:
+    container_name: upload-service
+    build: ./upload-video
+    ports :
+      - 8090:8090
+    restart: always
+    depends_on:
+      mysql:
+        condition: service_started
