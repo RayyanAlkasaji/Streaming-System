@@ -1,27 +1,24 @@
-name: RayyanTube
-on:
-  push:
-    branches:
-      - main
+  name: RayyanTube
+  on:
+    push:
+      branches:
+        - main
 
-jobs:
-  auto-commit:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: main
-      - name: Configure Git
-        run: |
-          git config --global user.email "ryyanksg@gmail.com"
-          git config --global user.name "RayyanAlkasaji"
-      - name: Commit and push
-        run: |
-          git add .
-          git diff --staged --quiet || (git commit -m "Automate changes" && git push)
-          echo "This is CICD"
-      - name: Docker Update
-        run: |
-          docker compose up
-          echo "this is updating docker
+  jobs:
+    auto-commit:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3 
+                actions/setup-node@v3
+          with:
+            ref: main
+        - name: Configure Git
+          run: |
+            git config --global user.email "ryyanksg@gmail.com"
+            git config --global user.name "RayyanAlkasaji"
+        - name: Commit and push
+          run: |
+            git add .
+            git diff --staged --quiet || (git commit -m "Automate changes" && git push)
+            echo "This is CICD"
