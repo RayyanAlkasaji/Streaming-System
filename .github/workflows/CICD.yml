@@ -1,23 +1,31 @@
-  name: RayyanTube
-  on:
-    push:
-      branches:
-        - main
+name: RayyanTube
 
-  jobs:
-    auto-commit:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Set up Node.js environment
-          uses: actions/setup-node@v4
-          with:
-            node-version: '20.x'  # Replace with your desired Node.js version
+on:
+  push:
+    branches:
+      - main
 
-        - name: Configure Git
-          run: |
-            git config --global user.email "ryyanksg@gmail.com"
-            git config --global user.name "RayyanAlkasaji"
-        - name: Commit and push
-          run: |
-            git diff --staged --quiet || (git commit -m "Automate changes" && git push)
-            echo "This is CICD"
+jobs:
+  make-changes-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "ryyanksg@gmail.com"
+          git config --global user.name "RayyanAlkasaji"
+
+      # Example step that makes changes, e.g., formatting code or updating documentation
+      - name: Make changes
+        run: echo "Hello, World!" > example.txt
+
+      - name: Commit and push if changes exist
+        run: |
+          git add .
+          git diff --cached --quiet || git commit -m "Automate changes"
+          git push
