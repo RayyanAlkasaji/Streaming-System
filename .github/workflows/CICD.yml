@@ -1,12 +1,23 @@
 name: RayyanTube
-run-name: cicd-pipeline
-on: [push]
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  Explore-GitHub-Actions:
-  runs-on: ubuntu-latest
-  steps:
-    - run: git add .
-    - run: echo "This is adding"
-    - run: git commit -m "This is commit"
-    - run: git push origin main
-    - run: echo "Code is pushed"
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Configure Git
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "GitHub Actions"
+      - name: Commit and push
+        run: |
+          git add .
+          git diff --staged --quiet || (git commit -m "Automate changes" && git push)
+          echo "This is CICD"
