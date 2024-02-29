@@ -1,4 +1,7 @@
 name: RayyanTube
+permissions:
+  contents: write
+  issues: write # Only if you need to interact with issues
 
 on:
   push:
