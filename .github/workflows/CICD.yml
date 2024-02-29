@@ -8,10 +8,6 @@ jobs:
   auto-commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: main
       - name: Configure Git
         run: |
           git config --global user.email "ryyanksg@gmail.com"
