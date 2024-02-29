@@ -31,4 +31,4 @@ jobs:
         run: |
           git add .
           git diff --cached --quiet || git commit -m "Automate changes"
-          git push
+          git push origin main
