@@ -14,8 +14,8 @@ jobs:
           ref: main
       - name: Configure Git
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "GitHub Actions"
+          git config --global user.email "ryyanksg@gmail.com"
+          git config --global user.name "RayyanAlkasaji"
       - name: Commit and push
         run: |
           git add .
