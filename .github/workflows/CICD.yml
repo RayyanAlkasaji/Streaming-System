@@ -8,11 +8,11 @@
     auto-commit:
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout repository
-          uses: actions/checkout@v3 
-                actions/setup-node@v3
+        - name: Set up Node.js environment
+          uses: actions/setup-node@v3
           with:
-            ref: main
+            node-version: '20.x'  # Replace with your desired Node.js version
+
         - name: Configure Git
           run: |
             git config --global user.email "ryyanksg@gmail.com"
